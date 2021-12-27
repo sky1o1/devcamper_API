@@ -10,8 +10,9 @@ dotenv.config({ path: "./config/config.env" });
 //Connect to DB
 connectDB();
 
-// Route files
-const route = require("./routes/bootcampRoute");
+// Export Route files
+const bootcampsRouter = require("./routes/bootcampRoute");
+const courseRouter = require("./routes/coursesRoute");
 
 const app = express();
 
@@ -23,7 +24,9 @@ if (process.env.Node_Env === "development") {
   app.use(morgan);
 }
 // Mount routers
-app.use("/api/v1/bootcamps", route);
+app.use("/api/v1/bootcamps", bootcampsRouter);
+app.use("/api/v1/courses", courseRouter);
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
