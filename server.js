@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 const fileupload = require("express-fileupload");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
@@ -30,6 +31,8 @@ if (process.env.Node_Env === "development") {
 //File upload
 app.use(fileupload());
 
+//Cookie parser
+app.use(cookieParser());
 //Set static folder
 app.use(express.static(path.join(__dirname, "public")));
 
